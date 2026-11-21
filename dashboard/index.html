@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Radar — Token Launch Radar</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="dot"></span>Harbor Radar</div>
+  <div class="topmeta" id="topmeta">Snapshot — DefiLlama protocol index</div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Pre-token protocols, ranked by what a token could be worth</h1>
+    <p class="lede">The watchlist is the floor: every protocol with at least $50M of TVL and no token on record. The early radar adds every rankable pre-token protocol below that floor, picked by implied value, not by size. Implied value is a model, not a promise — and it never predicts whether or when a token launches.</p>
+    <p class="model" id="modelnote"></p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="panel" id="detail"></section>
+
+  <section class="panel">
+    <div class="controls">
+      <label>Search <input id="q" type="search" placeholder="Name, category or chain" autocomplete="off"></label>
+      <label>Category <select id="cat"><option value="">All categories</option></select></label>
+      <label>Token <select id="status"><option value="pre">Pre-token board</option><option value="live">Live token (market value)</option></select></label>
+      <label>Sort <select id="sort"><option value="implied">Implied value</option><option value="tvl">TVL</option><option value="growth">7-day change</option><option value="age">Age</option></select></label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="tablewrap">
+      <table id="board">
+        <thead><tr>
+          <th data-k="rank">Rank</th><th data-k="name">Protocol</th><th data-k="category">Category</th>
+          <th data-k="chains">Chains</th><th data-k="tvl" class="num">TVL</th><th data-k="growth" class="num">7d</th>
+          <th data-k="age" class="num">Age</th><th data-k="implied" class="num">Implied value</th><th class="num">Token</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="hint">Click a row for its model breakdown and farm plan. Click a column header to sort. “Records no token” means the snapshot carries no token for it — not that it has none.</p>
+  </section>
+
+  <section class="panel">
+    <h2>How the model works</h2>
+    <p>Implied value = TVL × category multiple × growth factor × age factor × breadth factor. The category multiple is what one dollar of TVL is worth as token value for that kind of business: a lender's spread and a chain's fees monetise TVL harder than a bridge toll or a staked receipt. The growth factor reads the 7-day TVL change, clamped to −50%…+150%, with falls punished a little harder than rises are rewarded. The age factor is a saturating curve over the days the protocol has run with no token on record. The breadth factor adds up to 16% for running on several chains. No protocol name is special-cased; the same function scores every row.</p>
+    <p>Farm plans are built from the protocol's own record: the entry action and the weekly habit follow its category, the gas figure follows its first chain, the capital follows its TVL, and the hold follows its age. Every step states what it costs and how long it takes.</p>
+  </section>
+
+  <footer>Harbor Radar · model harbor-1 · Built from a sealed DefiLlama snapshot. Implied values are this entry's own claim.</footer>
+</main>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
